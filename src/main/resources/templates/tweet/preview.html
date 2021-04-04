@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common/globalnavi::meta_header('ダッシュボード',~{::link},~{::script},~{::meta})">
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@moo_period" />
+    <meta name="twitter:creator" content="@moo_period" />
+    <meta property="og:url" content="http://bits.blogs.nytimes.com/2011/12/08/a-twitter-for-my-sister/" />
+    <meta property="og:title" content="@moo_periodさんの伏せ字ツイート" />
+    <meta property="og:description" content="お前らのツイートをパスタで埋め尽くすぞ！" />
+    <meta property="og:image" content="http://graphics8.nytimes.com/images/2011/12/08/technology/bits-newtwitter/bits-newtwitter-tmagArticle.jpg" />
+</head>
+<body>
+<div th:replace="common/globalnavi::globalnavi"></div>
+<div class="container-fluid">
+    <div class="row">
+        <main class="col-md-9 col-lg-10 px-4 py-4">
+            <div class="container">
+
+
+                <div role="main" 　class="col-10 col-md-8 offset-md-2 py-2">
+
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center card-title">
+                                <h3 class="h5 text-secondary" th:text="${tweet.twitterUserId}"></h3>
+                            </div>
+                            <p class="card-text" id="tweet"  th:utext="${tweet.message}"></p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+<footer class="blog-footer">
+    <!-- <p>Blog template built for <a href="https://getbootstrap.com/">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p> -->
+    <p><a href="https://twitter.com/moo_period">@moo_period</a>によって作成されました。</p>
+    <p>
+        <a href="#">TOP</a>
+    </p>
+</footer>
+</body>
+</html>

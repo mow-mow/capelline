@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+    <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
+    <timestamp key="LOG_DATE" datePattern="yyyyMMdd"/>
+    <property name="LOG_DIR" value="/apps/chobitter/logs/" />
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>%d [%t][%X{session_id}][%X{user_id}][%X{display_name}][%p][%c] - %m%n</pattern>
+        </layout>
+    </appender>
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoder>
+            <pattern>%d [%t][%X{session_id}][%X{user_name}][%X{user_id}][%p][%c] - %m%n</pattern>
+        </encoder>
+        <file>${LOG_DIR}chobitter_app.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_DIR}history/chobitter_app.log.%d{yyyyMMdd}.txt</fileNamePattern>
+            <maxHistory>2</maxHistory>
+        </rollingPolicy>
+
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE"/>
+    </root>
+
+</configuration>
