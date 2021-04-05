@@ -18,14 +18,12 @@ public class Tweet implements Serializable {
 	@Id
 	private String tweetId;
 
-
 	private String message;
 	private String maskMessage;
-
-	private String twitterUserId;
-
+	
 	private LocalDateTime updateDate;
 	private LocalDateTime insertDate;
+	private String userId;
 	@Version
 	private int version;
 	private boolean invalidFlag;

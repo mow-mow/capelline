@@ -14,8 +14,6 @@ public class SigninController {
 	String showMainPage(HttpServletRequest request, Map<String, Object> model) {
 		return "redirect:/auth/twitter";
 	}
-//	String showMainPage(HttpServletRequest request, Map<String, Object> model) {
-//		return "main/signin";
-//	}
+
 
 }

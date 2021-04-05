@@ -23,7 +23,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests().antMatchers("/", "/signin", "/auth/**").permitAll().anyRequest().authenticated().and()
 				.formLogin().loginProcessingUrl("/authenticate").loginPage("/signin").failureUrl("/signin?error")
-				.defaultSuccessUrl("/", true).usernameParameter("username").passwordParameter("password").and().logout()
+				.defaultSuccessUrl("/new", true).usernameParameter("username").passwordParameter("password").and().logout()
 				.logoutSuccessUrl("/").and().apply(new SpringSocialConfigurer());
 	}
 

@@ -11,7 +11,6 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @SpringBootApplication
 @EnableJpaRepositories
 @EnableAsync
-@EnableScheduling
 @Slf4j
 public class CapellineApplication {
 
