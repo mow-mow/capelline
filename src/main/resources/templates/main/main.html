@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="common/globalnavi::meta_header('ツイート',~{::link},~{::script},~{::meta})">
-
+    <meta name="robots" content="noindex" />
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="@moo_period" />
     <meta name="twitter:creator" content="@moo_period" />
@@ -15,16 +15,19 @@
 <div class="container-fluid">
     <div class="row">
         <main class="col-12 py-4">
-            <div class="container">
-
-
-                <div role="main" 　class="col-12 py-1">
-
-                    <div class="card">
-
-                    </div>
+            <section class="jumbotron text-center">
+                <div class="container">
+                    <h1 class="jumbotron-heading">ちょびったー(chobitter)</h1>
+                    <p class="lead text-muted">ちょびったーは某アプリを参考に作ったジョークアプリです。ガルパンのネタバレにワンクッションおきたいときに使用するとアンチョビがメッセージをパスタで伏せてくれます。</p>
+                    <p>
+                        <a href="/new" class="btn btn-primary my-2">メッセージを登録する</a>
+<!--
+                        <a href="#" class="btn btn-secondary my-2">Secondary action</a>
+-->
+                    </p>
                 </div>
-            </div>
+            </section>
+
         </main>
     </div>
 </div>

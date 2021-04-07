@@ -1,7 +1,6 @@
-package info.caprese.capelline.service;
+package info.caprese.capelline.logic;
 
 import info.caprese.capelline.entity.Tweet;
-import info.caprese.capelline.entity.User;
 import info.caprese.capelline.entity.UserConnection;
 import info.caprese.capelline.repository.UserConnectionRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -27,22 +26,22 @@ public class TweetLogic {
     @Autowired
     private UserConnectionRepository userConnectionRepository;
 
-    public boolean tweet(Tweet tweet) {
+    public boolean tweet(Tweet tweet) throws Exception {
 
         Optional<UserConnection> userConnection = userConnectionRepository.findById(tweet.getUserId());
         if(!userConnection.isPresent()) {
             log.error("ユーザ接続情報存在チェック - [NG] : " + tweet.getUserId());
-            return false;
+            throw new IllegalStateException();
         }
         log.info("ユーザ接続情報存在チェック - [OK]" + tweet.getUserId());
 
         Twitter twitter = generateTwitter(userConnection.get().getAccessToken(), userConnection.get().getSecret());
         Status status;
         try {
-            status = twitter.updateStatus(tweet.getMaskMessage() + "\r\n" + "https://chobitter.caprese.info/tweet/" + tweet.getTweetId());
+            status = twitter.updateStatus(tweet.getMaskMessage());
         } catch (TwitterException e) {
             log.error("ツイート - [NG]", e);
-            return false;
+            throw e;
         }
 
         log.info("ツイート - [OK]");

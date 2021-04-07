@@ -41,7 +41,6 @@
 					<li sec:authorize="isAuthenticated()"><a class="dropdown-item" href="#">@<span
 							sec:authentication="principal.user.displayName">displayName</span></a>
 					</li>
-					<li><a class="dropdown-item" th:href="@{/user/miho/gourmets}" ><i class="fas fa-border-all"></i>ダッシュボード</a></li>
 					<li><a class="dropdown-item" href="javascript:logout.submit()"><i class="fas fa-sign-out-alt"></i></i>ログアウト</a></li>
 				</ul>
 				<form th:action="@{/logout}" method="post" name="logout">

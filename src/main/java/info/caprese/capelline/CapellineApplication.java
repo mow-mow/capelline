@@ -10,8 +10,6 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
 @EnableJpaRepositories
-@EnableAsync
-@Slf4j
 public class CapellineApplication {
 
     public static void main(String[] args) {

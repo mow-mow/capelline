@@ -9,11 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class SigninController {
-
 	@GetMapping(path = "/signin")
 	String showMainPage(HttpServletRequest request, Map<String, Object> model) {
 		return "redirect:/auth/twitter";
 	}
-
-
 }

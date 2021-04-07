@@ -19,6 +19,7 @@ public class Tweet implements Serializable {
 	private String tweetId;
 
 	private String message;
+	private String originalMessage;
 	private String maskMessage;
 
 	private LocalDateTime updateDate;
