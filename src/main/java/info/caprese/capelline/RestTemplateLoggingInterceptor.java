@@ -6,6 +6,7 @@ import org.springframework.http.HttpRequest;
 import org.springframework.http.client.ClientHttpRequestExecution;
 import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.http.client.ClientHttpResponse;
+import org.springframework.stereotype.Component;
 import org.springframework.util.StreamUtils;
 
 import java.io.IOException;
@@ -14,6 +15,7 @@ import java.util.Collection;
 import java.util.UUID;
 
 @Slf4j
+@Component
 public class RestTemplateLoggingInterceptor implements ClientHttpRequestInterceptor {
 
 
@@ -21,6 +23,7 @@ public class RestTemplateLoggingInterceptor implements ClientHttpRequestIntercep
     public ClientHttpResponse intercept(HttpRequest request,
                                         byte[] body,
                                         ClientHttpRequestExecution execution) throws IOException {
+        log.info("★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★");
         val requestUuid = UUID.randomUUID();
         logRequest(requestUuid, request, body);
         val response = execution.execute(request, body);

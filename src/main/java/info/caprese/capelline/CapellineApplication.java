@@ -1,6 +1,7 @@
 package info.caprese.capelline;
 
 
+import info.caprese.capelline.config.CustomRestTemplateCustomizer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,7 +17,6 @@ import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
 @EnableJpaRepositories
-@Configuration
 public class CapellineApplication {
 
     public static void main(String[] args) {
@@ -24,10 +24,7 @@ public class CapellineApplication {
     }
 
     @Bean
-    RestTemplate restTemplate() {
-        return new RestTemplateBuilder()
-                .requestFactory(() -> new BufferingClientHttpRequestFactory(new SimpleClientHttpRequestFactory()))
-                .additionalInterceptors(new RestTemplateLoggingInterceptor())
-                .build();
+    public CustomRestTemplateCustomizer customRestTemplateCustomizer() {
+        return new CustomRestTemplateCustomizer();
     }
 }
