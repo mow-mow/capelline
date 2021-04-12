@@ -27,13 +27,15 @@
 
                     <div class="card">
                         <div class="card-body">
-                            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center card-title">
-                                <h3 class="h5 text-secondary" th:text="'@'+${user.displayName}"></h3>
-                            </div>
-                            <p class="card-text" id="tweet"  th:utext="${tweet.message}"></p>
+                            <h5 class="card-title"><a th:href="'https://twitter.com/'+${user.displayName}"><th:block th:text="'@'+${user.displayName}"></th:block></a></h5>
+                            <h6 class="card-subtitle mb-2 text-muted" th:text="${tweet.insertDate}"></h6>
 
+                            <p class="card-text" id="tweet"  th:utext="${tweet.message}"></p>
+                            <a th:href="'https://twitter.com/moo_period/status/'+${tweet.twitterStatusId}" class="card-link"><i class="fa fa-twitter-square" aria-hidden="true"></i>もとのツイート</a>
                         </div>
                     </div>
+
+                    <a href="/new" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">パスタでツイートしてみる</a>
                 </div>
             </div>
         </main>

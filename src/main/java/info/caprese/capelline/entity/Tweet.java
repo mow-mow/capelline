@@ -25,6 +25,7 @@ public class Tweet implements Serializable {
 	private LocalDateTime updateDate;
 	private LocalDateTime insertDate;
 	private String userId;
+	private Long twitterStatusId;
 	@Version
 	private int version;
 	private boolean invalidFlag;

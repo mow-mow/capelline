@@ -26,7 +26,7 @@ public class TweetLogic {
     @Autowired
     private UserConnectionRepository userConnectionRepository;
 
-    public boolean tweet(Tweet tweet) throws Exception {
+    public Status tweet(Tweet tweet) throws Exception {
 
         Optional<UserConnection> userConnection = userConnectionRepository.findById(tweet.getUserId());
         if(!userConnection.isPresent()) {
@@ -46,7 +46,7 @@ public class TweetLogic {
 
         log.info("ツイート - [OK]");
         log.info("message : " + status.getText());
-        return true;
+        return status;
     }
 
     private Twitter generateTwitter(String accessToken, String secret) {

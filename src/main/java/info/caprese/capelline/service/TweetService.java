@@ -10,6 +10,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import twitter4j.Status;
 
 import javax.transaction.Transactional;
 import java.security.Principal;
@@ -40,7 +41,6 @@ public class TweetService {
         return Optional.of(Pair.of(tweet.get(), user.get()));
     }
 
-    @Transactional
     public void regist(Principal principal, Tweet tweet) throws Exception {
 
 
@@ -56,7 +56,11 @@ public class TweetService {
         tweet.setUserId(AuthUtil.fetchUsedrId(principal));
         tweetRepository.save(tweet);
 
-		tweetLogic.tweet(tweet);
+		Status status = tweetLogic.tweet(tweet);
+
+        tweet.setTwitterStatusId(status.getId());
+        tweet.setUpdateDate(LocalDateTime.now());
+        tweetRepository.save(tweet);
 
     }
 
