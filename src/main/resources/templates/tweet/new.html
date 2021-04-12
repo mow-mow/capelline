@@ -20,14 +20,14 @@
                                   th:object="${tweet}" method="post" required>
 
                                 <div class="form-group">
-                                    <label for="msg">ツイートする文字を入力するんだ！</label>
+                                    <label for="msg">ツイートする文字を入力するんだ！<small class="text-muted">※[ ]で囲むと🍝で囲われます</small></label>
                                     <textarea class="form-control" id="msg_textarea" rows="5" th:field="*{message}"></textarea>
                                 </div>
 
                                 <div class="progress">
                                     <div id="progress-tweet"
                                          class="progress-bar progress-bar-striped progress-bar-animated"
-                                         role="progressbar" aria-valuemin="0" aria-valuemax="150" style="">20 chars
+                                         role="progressbar" aria-valuemin="0" aria-valuemax="128" style="">20 chars
                                     </div>
                                 </div>
                                 <div class="form-group">

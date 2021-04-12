@@ -15,8 +15,8 @@ $(function() {
 		$('#progress-tweet').text(tweetText);
 		$('#progress-tweet').text(tweetText.length + 'chars');
 		$('#progress-tweet').attr('aria-valuenow', ""+tweetText.length);
-		$('#progress-tweet').width(((tweetText.length * 100) / 150) + '%');
-		if (tweetText.length > 150) {
+		$('#progress-tweet').width(((tweetText.length * 100) / 128) + '%');
+		if (tweetText.length > 128) {
 			$('#progress-tweet').addClass('bg-danger');
 			$('#gourmet-submit').prop("disabled", true);
 		} else {
