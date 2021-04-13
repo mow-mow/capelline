@@ -77,7 +77,6 @@ border:0px;
 }
 
 .blog-footer {
-  padding: 2.5rem 0;
   color: #D2D9BA;
   text-align: center;
   background-color: #314259;
@@ -85,6 +84,7 @@ border:0px;
     width:100%;
     position: absolute;
     bottom: 0;
+    font-size:1.0rem;
 }
 .blog-footer p:last-child {
   margin-bottom: 0;
