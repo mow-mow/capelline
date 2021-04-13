@@ -6,6 +6,7 @@ import info.caprese.capelline.logic.TweetLogic;
 import info.caprese.capelline.repository.TweetRepository;
 import info.caprese.capelline.repository.UserRepository;
 import info.caprese.capelline.util.AuthUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,7 @@ import java.util.Random;
 import java.util.UUID;
 
 @Service
+@Slf4j
 public class TweetService {
 
     @Autowired
@@ -62,6 +64,7 @@ public class TweetService {
         tweet.setUpdateDate(LocalDateTime.now());
         tweetRepository.save(tweet);
 
+        log.info("ちょびったー登録 - [OK]");
     }
 
 
