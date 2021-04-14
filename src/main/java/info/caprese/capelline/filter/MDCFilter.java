@@ -43,7 +43,7 @@ public class MDCFilter implements Filter {
             // userid
             Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
             if (authentication != null) {
-                if (!(authentication.getPrincipal() instanceof SocialUserData)) {
+                if (authentication.getPrincipal() instanceof SocialUserData) {
                     SocialUserData principal = (SocialUserData) authentication.getPrincipal();
                     MDC.put("user_id", principal.getUser().getUserId());
                     MDC.put("display_name", principal.getUser().getDisplayName());

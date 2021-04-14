@@ -2,6 +2,7 @@ package info.caprese.capelline.filter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
@@ -46,54 +47,61 @@ public class LoggingFilter extends OncePerRequestFilter {
     }
 
     protected void doFilterWrapped(ContentCachingRequestWrapper request, ContentCachingResponseWrapper response, FilterChain filterChain) throws ServletException, IOException {
+
         try {
             beforeRequest(request, response);
             filterChain.doFilter(request, response);
-        }
-        finally {
+        } finally {
             afterRequest(request, response);
             response.copyBodyToResponse();
         }
+
     }
 
     protected void beforeRequest(ContentCachingRequestWrapper request, ContentCachingResponseWrapper response) {
         if (log.isInfoEnabled()) {
-            logRequestHeader(request, "[" + request.getRemoteAddr() + "]");
+            if (!(StringUtils.contains(request.getRequestURI(), ".css") ||
+                    StringUtils.contains(request.getRequestURI(), ".js"))) {
+                logRequestHeader(request);
+            }
         }
     }
 
     protected void afterRequest(ContentCachingRequestWrapper request, ContentCachingResponseWrapper response) {
         if (log.isInfoEnabled()) {
-            logRequestBody(request, "[" + request.getRemoteAddr() + "]");
-            logResponse(response, "[" + request.getRemoteAddr() + "]");
+            if (!(StringUtils.contains(request.getRequestURI(), ".css") ||
+                    StringUtils.contains(request.getRequestURI(), ".js"))) {
+                logRequestBody(request);
+                logResponse(response);
+            }
         }
     }
 
-    private static void logRequestHeader(ContentCachingRequestWrapper request, String prefix) {
+    private static void logRequestHeader(ContentCachingRequestWrapper request) {
         String queryString = request.getQueryString();
 
         StringJoiner headerString = new StringJoiner(",");
         Collections.list(request.getHeaderNames()).forEach(headerName ->
                 Collections.list(request.getHeaders(headerName)).forEach(headerValue ->
-                        headerString.add(headerName + ":" +headerValue)));
+                        headerString.add(headerName + ":" + headerValue)));
 
         if (queryString == null) {
-            log.info("【リクエスト情報】{} {} {} headers:{}", prefix, request.getMethod(), request.getRequestURI(), headerString);
+            log.info("【リクエスト情報】 {} {} headers:{}", request.getMethod(), request.getRequestURI(), headerString);
         } else {
-            log.info("【リクエスト情報】{} {} {}?{} headers:{}", prefix, request.getMethod(), request.getRequestURI(), queryString, headerString);
+            log.info("【リクエスト情報】 {} {}?{} headers:{}", request.getMethod(), request.getRequestURI(), queryString, headerString);
         }
     }
 
-    private static void logRequestBody(ContentCachingRequestWrapper request, String prefix) {
+    private static void logRequestBody(ContentCachingRequestWrapper request) {
         byte[] content = request.getContentAsByteArray();
         if (content.length > 0) {
             logContent(content, request.getContentType());
         }
     }
 
-    private static void logResponse(ContentCachingResponseWrapper response, String prefix) {
+    private static void logResponse(ContentCachingResponseWrapper response) {
         int status = response.getStatus();
-        log.info("【レスポンス情報】{} Status:{} {}" , prefix, status, HttpStatus.valueOf(status).getReasonPhrase());
+        log.info("【レスポンス情報】 Status:{} {}", status, HttpStatus.valueOf(status).getReasonPhrase());
 
 //        byte[] content = response.getContentAsByteArray();
 //        if (content.length > 0) {
