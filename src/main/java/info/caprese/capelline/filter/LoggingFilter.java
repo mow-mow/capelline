@@ -61,7 +61,8 @@ public class LoggingFilter extends OncePerRequestFilter {
     protected void beforeRequest(ContentCachingRequestWrapper request, ContentCachingResponseWrapper response) {
         if (log.isInfoEnabled()) {
             if (!(StringUtils.contains(request.getRequestURI(), ".css") ||
-                    StringUtils.contains(request.getRequestURI(), ".js"))) {
+                    StringUtils.contains(request.getRequestURI(), ".js") ||
+                    StringUtils.contains(request.getRequestURI(), "/actuator/prometheus"))) {
                 logRequestHeader(request);
             }
         }
@@ -70,7 +71,8 @@ public class LoggingFilter extends OncePerRequestFilter {
     protected void afterRequest(ContentCachingRequestWrapper request, ContentCachingResponseWrapper response) {
         if (log.isInfoEnabled()) {
             if (!(StringUtils.contains(request.getRequestURI(), ".css") ||
-                    StringUtils.contains(request.getRequestURI(), ".js"))) {
+                    StringUtils.contains(request.getRequestURI(), ".js") ||
+                    StringUtils.contains(request.getRequestURI(), "/actuator/prometheus"))) {
                 logRequestBody(request);
                 logResponse(response);
             }
