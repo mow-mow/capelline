@@ -103,7 +103,7 @@ public class TweetService {
             return message;
         }
         message = message.substring(0, startChar)
-                + StringUtils.repeat("🍝",endChar - (startChar + 2-1))
+                + StringUtils.repeat(orig,endChar - (startChar + 2-1))
                 + StringUtils.right(message, message.length() - endChar - 1) ;
         return replacePasta(message, orig);
     }
