@@ -19,9 +19,6 @@ spring:
 
   session:
     store-type: jdbc
-logging:
-  level:
-    sql: debug
 management:
   endpoints:
     web:
