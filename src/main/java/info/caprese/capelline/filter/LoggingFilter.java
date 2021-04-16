@@ -62,6 +62,7 @@ public class LoggingFilter extends OncePerRequestFilter {
         if (log.isInfoEnabled()) {
             if (!(StringUtils.contains(request.getRequestURI(), ".css") ||
                     StringUtils.contains(request.getRequestURI(), ".js") ||
+                    StringUtils.contains(request.getRequestURI(), ".icon") ||
                     StringUtils.contains(request.getRequestURI(), "/actuator/prometheus"))) {
                 logRequestHeader(request);
             }
